@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anything But a Game Controller</title>
+  <link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+  <main class="layout">
+    <section class="stage">
+      <div class="canvas-wrap"><canvas id="game" aria-label="Game canvas"></canvas></div>
+    </section>
+
+    <aside class="panel">
+      <h1>Anything But<br><span>a Game Controller</span></h1>
+
+      <div class="status" role="status">
+        <span id="statusDot" class="dot warn"></span>
+        <span id="statusText">Connecting to server…</span>
+      </div>
+
+      <div class="card pair" id="pairCard">
+        <div class="qr">
+          <img id="qrImg" alt="QR code to open the phone controller" hidden>
+          <p id="qrFallback" class="muted">Creating room…</p>
+        </div>
+        <div class="code-label">Room code</div>
+        <div id="roomCode" class="room-code">----</div>
+        <div id="linkText" class="link"></div>
+        <p id="httpsWarn" class="warn-box" hidden>
+          This link is plain <b>http</b>: phones block motion sensors on http pages.
+          Run <code>npm run cert</code> and restart the server (see README).
+        </p>
+      </div>
+
+      <div class="stats">
+        <div><span class="k">Score</span><span id="scoreEl" class="v">0</span></div>
+        <div><span class="k">Best</span><span id="bestEl" class="v">0</span></div>
+        <div><span class="k">Latency*</span><span id="latEl" class="v">--</span></div>
+      </div>
+      <p class="fine">*approx. one-way phone → laptop delay, estimated from round trips.</p>
+
+      <button id="restartBtn" class="btn">Restart game</button>
+
+      <ol class="how">
+        <li>Scan the QR code with your phone camera (same Wi-Fi).</li>
+        <li>Tap <b>Enable motion sensors</b>, hold the phone comfortably and tap <b>Calibrate</b>.</li>
+        <li><b>Tilt</b> left/right to steer. <b>Shake</b> to jump (and to start / restart).</li>
+        <li><span class="swatch amber"></span> Orange barriers: jump over them. <span class="swatch red"></span> Red/grey: steer around.</li>
+      </ol>
+      <p class="fine">Keyboard fallback: ← → / A D steer, Space jump/start, R restart.</p>
+    </aside>
+  </main>
+
+  <script src="js/common.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/host.js"></script>
+</body>
+</html>

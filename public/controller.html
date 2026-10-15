@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#07061a">
+  <title>Phone Controller</title>
+  <link rel="stylesheet" href="css/controller.css">
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <div class="conn"><span id="dot" class="dot warn"></span><span id="connText">Connecting…</span></div>
+      <div class="meta"><span id="roomTag">ROOM ----</span><span id="latTag">-- ms</span></div>
+    </header>
+
+    <section id="joinCard" class="card" hidden>
+      <h2>Enter room code</h2>
+      <p class="muted">Shown on the laptop screen.</p>
+      <div class="row">
+        <input id="roomInput" maxlength="4" autocapitalize="characters" autocomplete="off" spellcheck="false" placeholder="ABCD">
+        <button id="joinBtn" class="btn small">Join</button>
+      </div>
+    </section>
+
+    <section id="errorCard" class="card error" hidden>
+      <p id="errorText"></p>
+      <button id="retryBtn" class="btn small">Try again</button>
+    </section>
+
+    <section id="sensorCard" class="card">
+      <p id="sensorMsg">Tap the button so your phone can share its tilt and motion with the game.</p>
+      <button id="enableBtn" class="btn primary">Enable motion sensors</button>
+    </section>
+
+    <section class="card gauge">
+      <div id="steerLabel" class="steer-label">CENTER</div>
+      <div class="track" id="track">
+        <div class="deadzone" id="deadzone"></div>
+        <div class="tick"></div>
+        <div id="knob" class="knob"></div>
+      </div>
+      <div class="readout">
+        <span id="tiltDeg">0°</span>
+        <span id="gameState" class="muted">game: waiting</span>
+        <span id="shakeMeter" class="muted">shake 0</span>
+      </div>
+      <div id="pad" class="pad" hidden>Sensors unavailable: slide your finger here to steer</div>
+    </section>
+
+    <button id="calBtn" class="btn cal" disabled>CALIBRATE</button>
+    <p id="calMsg" class="muted center">Hold the phone the way you like, then tap Calibrate.</p>
+    <button id="jumpBtn" class="btn jump">JUMP</button>
+
+    <section class="card settings">
+      <label>Steering sensitivity <b id="sensVal">1.0</b>
+        <input id="sens" type="range" min="0.5" max="2" step="0.1" value="1"></label>
+      <label>Shake strength needed <b id="shakeVal">14</b>
+        <input id="shake" type="range" min="6" max="25" step="1" value="14"></label>
+    </section>
+
+    <p class="hint">Hold the phone in front of you (portrait). Tilt left / right to steer. Give it a quick shake to jump.</p>
+  </main>
+
+  <div id="flash" class="flash">JUMP!</div>
+
+  <script src="js/common.js"></script>
+  <script src="js/sensors.js"></script>
+  <script src="js/controller.js"></script>
+</body>
+</html>
